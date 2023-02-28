@@ -1,18 +1,23 @@
 import React from 'react'
 import { RenderElementProps } from 'slate-react'
 import { JEParagraphElement } from '../elements/JEParagraphElement'
+import { JEHeadingElement } from '../elements/JEHeadingElement'
+import { IHeadingElement } from '../IJNoteEditorElements'
 
 export function useJNoteEditorRenderElement() {
-  const renderElement = React.useCallback((props: RenderElementProps) => {
+  return React.useCallback((props: RenderElementProps) => {
     switch (props.element.type) {
       case 'heading': {
-        return <h3 {...props.attributes}>{props.children}</h3>
+        return (
+          <JEHeadingElement
+            {...props}
+            element={props.element as IHeadingElement}
+          />
+        )
       }
       default: {
         return <JEParagraphElement {...props} />
       }
     }
   }, [])
-
-  return renderElement
 }
