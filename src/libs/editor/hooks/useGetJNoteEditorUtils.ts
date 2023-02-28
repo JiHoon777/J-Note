@@ -3,6 +3,11 @@ import React from 'react'
 import { CustomEditor } from '../IJNoteEditor'
 import { Utils } from '../../../utils/Utils'
 import { CustomElement } from '../IJNoteEditorElements'
+import {
+  DEFAULT_BLOCK_MAP_FIRST_TEXT_TYPE_TO_CONVERT_BLOCK,
+  FIRST_TEXT_TYPE_TO_CONVERT_BLOCK,
+} from '../JNoteEditor.const'
+import { Editor, Transforms } from 'slate'
 
 export function useGetJNoteEditorUtils(editor: CustomEditor) {
   const getCurrentBlock = React.useCallback(() => {
@@ -20,5 +25,17 @@ export function useGetJNoteEditorUtils(editor: CustomEditor) {
     return { block, anchor, focus, firstText }
   }, [editor])
 
-  return { getCurrentBlock }
+  // 첫 텍스트를 통해 블록을 변경하고, 첫 텍스트를 제거한다.
+  const setBlockByFirstText = React.useCallback(
+    (firstText: FIRST_TEXT_TYPE_TO_CONVERT_BLOCK) => {
+      Transforms.setNodes(
+        editor,
+        DEFAULT_BLOCK_MAP_FIRST_TEXT_TYPE_TO_CONVERT_BLOCK[firstText]
+      )
+      Editor.deleteBackward(editor, { unit: 'line' })
+    },
+    [editor]
+  )
+
+  return { getCurrentBlock, setBlockByFirstText }
 }
