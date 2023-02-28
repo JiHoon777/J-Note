@@ -1,9 +1,8 @@
 import React from 'react'
-import { Editable, RenderElementProps, Slate, withReact } from 'slate-react'
-import { createEditor, Descendant, Editor, Transforms } from 'slate'
-import { JEParagraphElement } from './elements/JEParagraphElement'
-import { SPACE_KEY } from './JNoteEditor.const'
-import { useGetJNoteEditorUtils } from './hooks/useGetJNoteEditorUtils'
+import { Editable, Slate, withReact } from 'slate-react'
+import { createEditor, Descendant } from 'slate'
+import { useJNoteEditorEvent } from './hooks/useJNoteEditorEvent'
+import { useJNoteEditorRenderElement } from './hooks/useJNoteEditorRenderElement'
 
 type Props = {}
 
@@ -20,30 +19,8 @@ const initialValue: Descendant[] = [
 export const JNoteEditor = (props: Props) => {
   const [editor] = React.useState(() => withReact(createEditor()))
 
-  const { getCurrentBlock } = useGetJNoteEditorUtils(editor)
-
-  const renderElement = React.useCallback((props: RenderElementProps) => {
-    switch (props.element.type) {
-      case 'heading': {
-        return <h3 {...props.attributes}>{props.children}</h3>
-      }
-      default: {
-        return <JEParagraphElement {...props} />
-      }
-    }
-  }, [])
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    const currentBlock = getCurrentBlock()
-
-    if (currentBlock?.firstText === '#') {
-      if (e.key === SPACE_KEY) {
-        e.preventDefault()
-
-        Transforms.setNodes(editor, { type: 'heading' })
-      }
-    }
-  }
+  const { onKeyDown } = useJNoteEditorEvent(editor)
+  const renderElement = useJNoteEditorRenderElement()
 
   return (
     <Slate editor={editor} value={initialValue}>
