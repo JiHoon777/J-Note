@@ -1,12 +1,12 @@
 import React from 'react'
 import { RenderElementProps } from 'slate-react'
-import { IHeadingElement } from '../IJNoteEditorElements'
+import { IHeadingElement } from './editor-element.interface'
 
 type Props = RenderElementProps & {
   element: IHeadingElement
 }
 
-export const JEHeadingElement = (props: Props) => {
+export const HeadingElement = (props: Props) => {
   const { element, children, attributes } = props
 
   if (element.level === 1) {

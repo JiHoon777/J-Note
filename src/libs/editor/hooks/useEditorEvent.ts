@@ -1,17 +1,16 @@
-import { CustomEditor } from '../IJNoteEditor'
+import { CustomEditor } from '../editor.interface'
 import React from 'react'
 import {
   FIRST_TEXTS_TO_CONVERT_BLOCK,
   FIRST_TEXT_TYPE_TO_CONVERT_BLOCK,
   SPACE_KEY,
-} from '../JNoteEditor.const'
-import { useGetJNoteEditorUtils } from './useGetJNoteEditorUtils'
+} from '../editor.const'
+import { useGetEditorUtils } from './useGetEditorUtils'
 import { Utils } from '../../../utils/Utils'
-import { JNoteEditorElementType } from '../IJNoteEditorElements'
+import { JNoteEditorElementType } from '../elements/editor-element.interface'
 
-export function useJNoteEditorEvent(editor: CustomEditor) {
-  const { getCurrentBlock, setBlockByFirstText } =
-    useGetJNoteEditorUtils(editor)
+export function useEditorEvent(editor: CustomEditor) {
+  const { getCurrentBlock, setBlockByFirstText } = useGetEditorUtils(editor)
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const currentBlock = getCurrentBlock()

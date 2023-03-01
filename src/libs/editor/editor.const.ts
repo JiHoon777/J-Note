@@ -1,4 +1,4 @@
-import { CustomElement } from './IJNoteEditorElements'
+import { CustomElement } from './elements/editor-element.interface'
 
 export const SPACE_KEY = ' '
 

@@ -1,15 +1,15 @@
 import React from 'react'
 
-import { CustomEditor } from '../IJNoteEditor'
+import { CustomEditor } from '../editor.interface'
 import { Utils } from '../../../utils/Utils'
-import { CustomElement } from '../IJNoteEditorElements'
+import { CustomElement } from '../elements/editor-element.interface'
 import {
   DEFAULT_BLOCK_MAP_FIRST_TEXT_TYPE_TO_CONVERT_BLOCK,
   FIRST_TEXT_TYPE_TO_CONVERT_BLOCK,
-} from '../JNoteEditor.const'
+} from '../editor.const'
 import { Editor, Transforms } from 'slate'
 
-export function useGetJNoteEditorUtils(editor: CustomEditor) {
+export function useGetEditorUtils(editor: CustomEditor) {
   const getCurrentBlock = React.useCallback(() => {
     const { selection } = editor
 

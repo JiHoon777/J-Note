@@ -1,12 +1,11 @@
 import React from 'react'
 
-import './App.css'
-import { JNoteEditor } from './libs/editor/JNoteEditor'
+import { Editor } from './libs/editor/Editor'
 
 function App() {
   return (
     <div className="App">
-      <JNoteEditor />
+      <Editor />
     </div>
   )
 }
