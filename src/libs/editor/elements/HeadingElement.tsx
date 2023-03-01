@@ -1,6 +1,7 @@
 import React from 'react'
 import { RenderElementProps } from 'slate-react'
 import { IHeadingElement } from './editor-element.interface'
+import classNames from 'classnames'
 
 type Props = RenderElementProps & {
   element: IHeadingElement
@@ -9,13 +10,18 @@ type Props = RenderElementProps & {
 export const HeadingElement = (props: Props) => {
   const { element, children, attributes } = props
 
-  if (element.level === 1) {
-    return <h1 {...attributes}>{children}</h1>
-  }
+  const level = element.level
 
-  if (element.level === 2) {
-    return <h2 {...attributes}>{children}</h2>
-  }
-
-  return <h3 {...attributes}>{children}</h3>
+  return (
+    <div
+      {...attributes}
+      className={classNames('font-semibold', {
+        'text-[1.875em]': level === 1,
+        'text-[1.5em]': level === 2,
+        'text-[1.25em]': level === 3,
+      })}
+    >
+      {children}
+    </div>
+  )
 }
