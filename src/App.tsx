@@ -4,7 +4,7 @@ import { Editor } from './libs/editor/Editor'
 
 function App() {
   return (
-    <div className="App">
+    <div className="p-4 break-all">
       <Editor />
     </div>
   )

@@ -5,6 +5,7 @@ export type JNoteEditorElementType = 'paragraph' | 'heading' | 'bullet'
 export interface IJNoteEditorElementBase {
   type: JNoteEditorElementType
   children: CustomText[]
+  deps?: number
 }
 
 export interface IParagraphElement extends IJNoteEditorElementBase {
@@ -18,7 +19,6 @@ export interface IHeadingElement extends IJNoteEditorElementBase {
 
 export interface IBulletElement extends IJNoteEditorElementBase {
   type: 'bullet'
-  deps: number
 }
 
 export type CustomElement = IParagraphElement | IHeadingElement | IBulletElement
