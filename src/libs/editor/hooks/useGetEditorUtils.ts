@@ -37,5 +37,13 @@ export function useGetEditorUtils(editor: CustomEditor) {
     [editor]
   )
 
-  return { getCurrentBlock, setBlockByFirstText }
+  // 블록을 Paragraph 블록으로 변환시킨다.
+  const setBlockToParagraph = React.useCallback(() => {
+    Transforms.setNodes(
+      editor,
+      DEFAULT_BLOCK_MAP_FIRST_TEXT_TYPE_TO_CONVERT_BLOCK['p']
+    )
+  }, [editor])
+
+  return { getCurrentBlock, setBlockByFirstText, setBlockToParagraph }
 }

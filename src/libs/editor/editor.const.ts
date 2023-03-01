@@ -1,6 +1,8 @@
 import { CustomElement } from './elements/editor-element.interface'
 
-export const SPACE_KEY = ' '
+export const SPACE_KEY_STRING = ' '
+export const ENTER_KEY_STRING = 'Enter'
+export const BACK_SPACE_KEY_STRING = 'Backspace'
 
 export type FIRST_TEXT_TYPE_TO_CONVERT_BLOCK =
   | 'p'
